@@ -6,8 +6,6 @@ import (
 )
 
 type VideoListService struct {
-	Title string `form:"title" json:"title" binding:"required,min=2,max=30"`
-	Info  string `form:"info" json:"info" binding:"required,min=0,max=200"`
 }
 
 func (service *VideoListService) List() serializer.Response {

@@ -21,7 +21,7 @@ func NewRouter() *gin.Engine {
 	v1 := r.Group("/api/v1")
 	{
 
-		v1.POST("videos", api.CreateVideo)
+		v1.POST("video", api.CreateVideo)
 		v1.GET("video/:id", api.ShowVideo)
 		v1.GET("videos", api.VideoList)
 		v1.PUT("video/:id", api.UpdateVideo)

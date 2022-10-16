@@ -6,8 +6,8 @@ import (
 )
 
 type UpdateVideoService struct {
-	Title string `form:"title" json:"title" binding:"required,min=2,max=30"`
-	Info  string `form:"info" json:"info" binding:"required,min=0,max=200"`
+	Title string `form:"title" json:"title" binding:"required,min=2,max=300"`
+	Info  string `form:"info" json:"info" binding:"required,min=0,max=600"`
 }
 
 func (service *UpdateVideoService) Update(id string) serializer.Response {
