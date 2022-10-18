@@ -6,17 +6,21 @@ import (
 )
 
 type CreateVideoService struct {
-	Title string `form:"title" json:"title" binding:"required,min=2,max=300"`
-	Info  string `form:"info" json:"info" binding:"required,min=0,max=600"`
-	URL   string `form:"url" json:"url"`
+	Title   string `form:"title" json:"title" binding:"required,min=2,max=300"`
+	Alias   string `form:"alias" json:"alias"`
+	Episode int64  `form:"episode" json:"episode"`
+	Info    string `form:"info" json:"info" binding:"required,min=0,max=600"`
+	URL     string `form:"url" json:"url"`
 }
 
 // Create 创建视频
 func (service *CreateVideoService) Create() serializer.Response {
 	video := model.Video{
-		Title: service.Title,
-		Info:  service.Info,
-		URL:   service.URL,
+		Title:   service.Title,
+		Alias:   service.Alias,
+		Episode: service.Episode,
+		URL:     service.URL,
+		Info:    service.Info,
 	}
 
 	err := model.DB.Create(&video).Error

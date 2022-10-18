@@ -20,5 +20,5 @@ func (service *ShowVideoService) Show(id string) serializer.Response {
 		}
 	}
 
-	return serializer.BuildVideoResponse(video)
+	return serializer.BuildShowVideoResponse(video)
 }
