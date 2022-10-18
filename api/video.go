@@ -26,8 +26,10 @@ func ShowVideo(c *gin.Context) {
 // 获取视频列表
 func VideoList(c *gin.Context) {
 	service := service.VideoListService{}
-	res := service.List()
-	c.JSON(200, res)
+	if alias, ok := c.GetQuery("alias"); ok {
+		res := service.List(alias)
+		c.JSON(200, res)
+	}
 }
 
 // 更新视频

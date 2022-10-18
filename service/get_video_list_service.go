@@ -8,9 +8,9 @@ import (
 type VideoListService struct {
 }
 
-func (service *VideoListService) List() serializer.Response {
+func (service *VideoListService) List(alias string) serializer.Response {
 	var videos []model.Video
-	err := model.DB.Find(&videos).Error
+	err := model.DB.Where("alias = ?", alias).Find(&videos).Error
 	if err != nil {
 		return serializer.Response{
 			Code:  50001,

@@ -21,12 +21,10 @@ func NewRouter() *gin.Engine {
 	v1 := r.Group("/api/v1")
 	{
 
-		v1.POST("video", api.CreateVideo)
 		v1.GET("video/:id", api.ShowVideo)
 		v1.GET("videos", api.VideoList)
 		v1.PUT("video/:id", api.UpdateVideo)
 		v1.DELETE("video/:id", api.DeleteVideo)
-		v1.POST("upload/token", api.UploadToken)
 
 		v1.POST("ping", api.Ping)
 
@@ -40,6 +38,8 @@ func NewRouter() *gin.Engine {
 		auth := v1.Group("")
 		auth.Use(middleware.AuthRequired())
 		{
+			auth.POST("video", api.CreateVideo)
+			auth.POST("upload/token", api.UploadToken)
 			// User Routing
 			auth.GET("user/me", api.UserMe)
 			auth.DELETE("user/logout", api.UserLogout)
