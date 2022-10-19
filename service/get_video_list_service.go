@@ -27,7 +27,7 @@ func (service *VideoListService) List() serializer.Response {
 		}
 	}
 
-	if err := model.DB.Where("alias = ?", service.Alias).Limit(service.Limit).Offset(service.Start).Find(&videos).Error; err != nil {
+	if err := model.DB.Where("alias = ?", service.Alias).Limit(service.Limit).Offset(service.Start).Order("episode desc").Find(&videos).Error; err != nil {
 		return serializer.Response{
 			Code:  50001,
 			Msg:   "查询数据库错误",
