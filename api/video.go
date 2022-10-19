@@ -26,9 +26,11 @@ func ShowVideo(c *gin.Context) {
 // 获取视频列表
 func VideoList(c *gin.Context) {
 	service := service.VideoListService{}
-	if alias, ok := c.GetQuery("alias"); ok {
-		res := service.List(alias)
+	if err := c.ShouldBind(&service); err == nil {
+		res := service.List()
 		c.JSON(200, res)
+	} else {
+		c.JSON(200, ErrorResponse(err))
 	}
 }
 

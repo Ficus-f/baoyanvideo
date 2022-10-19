@@ -86,3 +86,18 @@ func BuildVideos(items []model.Video) (videos []Video) {
 	}
 	return videos
 }
+
+// DataList 基础列表结构
+type VideoList struct {
+	Items interface{} `json:"items"`
+	Total uint        `json:"total"`
+}
+
+func BuildListVideosResponse(items interface{}, total uint) Response {
+	return Response{
+		Data: VideoList{
+			Items: items,
+			Total: total,
+		},
+	}
+}
